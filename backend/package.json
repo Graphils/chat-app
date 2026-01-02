@@ -1,0 +1,47 @@
+{
+  "name": "distributed-chat-backend",
+  "version": "1.0.0",
+  "description": "Distributed Chat System Backend",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "build": "tsc",
+    "server1": "ts-node src/servers/server1.ts",
+    "server2": "ts-node src/servers/server2.ts",
+    "server3": "ts-node src/servers/server3.ts",
+    "start:all": "concurrently \"npm run server1\" \"npm run server2\" \"npm run server3\"",
+    "start:windows": "start cmd /k \"npm run server1\" && timeout 2 && start cmd /k \"npm run server2\" && timeout 2 && start cmd /k \"npm run server3\"",
+    "start:all-powershell": "powershell -Command \"Start-Process powershell -ArgumentList '-NoExit', '-Command', 'cd', '$PWD', ';', 'npm', 'run', 'server1' ; Start-Process powershell -ArgumentList '-NoExit', '-Command', 'cd', '$PWD', ';', 'npm', 'run', 'server2' ; Start-Process powershell -ArgumentList '-NoExit', '-Command', 'cd', '$PWD', ';', 'npm', 'run', 'server3'\""
+  },
+  "keywords": [
+    "distributed",
+    "chat",
+    "socket.io",
+    "typescript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "uuid": "^9.0.0",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.25",
+    "@types/node": "^20.19.27",
+    "@types/uuid": "^9.0.7",
+    "@types/ws": "^8.5.10",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.11",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
